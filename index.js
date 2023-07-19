@@ -1,4 +1,4 @@
-//*********** */ palindrome-checker *********
+//*********** */ valid-palindrome *********
 
 /*******************************
  * Valid Palindrome
@@ -7,17 +7,20 @@ string is a palindrome otherwise return false.A palindrome is a word, phrase, nu
 sequence of characters that reads the same forward and backward, ignoring punctuation, case, and
 spacing.
  * 
- ************************************  */ 
+ ************************************  */
 
-const isPalindrome = (string) => {
-    const regex = /[\W_]/g;
+const isPalindrome = (str) => {
+    // Remove punctuation, convert to lowercase, and remove spacing
+    const formattedStr = str.replace(/[\W_]/g, "").toLowerCase();
 
-    const lowerCaseWithRemove = string.toLowerCase().replace(regex, "");
-    const reverseLowerCase = lowerCaseWithRemove.split("").reverse().join("");
+    // Reverse the string
+    const reversedStr = formattedStr.split("").reverse().join("");
 
-    return lowerCaseWithRemove === reverseLowerCase;
-};
+    // Check if the reversed string matches the original string
+    return formattedStr === reversedStr;
+}
 
-console.log(isPalindrome("level"));
-console.log(isPalindrome("hello"));
-console.log(isPalindrome("A man, a plan, a canal. Panama"));
+// Testing the function
+console.log(isPalindrome("level")); // Output: true
+console.log(isPalindrome("hello")); // Output: false
+console.log(isPalindrome("A man, a plan, a canal: Panama"));
